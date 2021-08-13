@@ -1,0 +1,29 @@
+%option noyywrap
+%{
+	#include<stdio.h>
+	int comment =0,non_comment=0, state=1;
+%}
+
+%%
+"//".*[\n] {comment++;}
+"/*" {state = 0;}
+"*/" {if(state==0)
+	{
+		comment++;
+		state=1;
+	}
+     }
+.|\n {if(state ==1)
+	{
+		non_comment++;
+	}
+     }
+%%
+int main()
+{
+	printf("Enter input");
+	yylex();
+	printf("Total comment lines are: %d\n", comment);
+	printf("Total non-comment lines are: %d\n", non_comment);
+	return 0;
+}

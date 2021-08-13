@@ -1,0 +1,19 @@
+%option noyywrap
+%{
+
+	#include<stdio.h>
+
+%}
+
+%%
+"vineet" printf("Hi Vineet");
+[a-z]+ printf("I need vineet to execute it");
+.|\n ; 
+%%
+
+int main()
+{
+	printf("Enter name\n");
+	yylex();
+	return 0;
+}
